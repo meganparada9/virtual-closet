@@ -14,5 +14,5 @@ of my passions: coding and fashion!
 
 # future features
 I would love to implement a way to upload pictures of the clothes added to virtual closet through OpenCV.
-=======
+
 
