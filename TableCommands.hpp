@@ -25,7 +25,9 @@ class TableCommands {
     
     void open_database();
     
-    int execute_query(sqlite3* db, const std::string& query);
+    int execute_query(sqlite3* db, const string& query);
+    
+    void print_command(sqlite3* db, const string& query);
 };
 
 

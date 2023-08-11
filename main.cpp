@@ -51,26 +51,45 @@ int main(int argc, const char * argv[]) {
             s.execute_query(s.database, insert_query);
         }
     }
-    
+    int choice;
     p.functionalities();
     
-    p.invalid_choice();
+    while(cin >> choice){
+        p.choice = choice;
+        p.invalid_choice();
+        
+            if(p.choice == 1){
+                p.insert();
+                string insert_query = "INSERT INTO ClothingTable (ClothingItem, Brand, Size, Color, Name) "
+                                             "VALUES ('" + p.clothing_item + "', '" + p.brand + "', '" +
+                                             p.size + "', '" + p.color + "', '" + p.user_name + "');";
+                
+                s.execute_query(s.database, insert_query);
+                cout << "You have successfully inserted " << p.clothing_item << " into your closet!";
+            }
+            else if(p.choice == 2){
+                p.remove();
+                string delete_query = "DELETE FROM ClothingTable WHERE Name = '" + p.user_name + "' AND ClothingItem = '" + p.clothing_item + "' AND Brand = '" + p.brand + "' AND Size = '" + p.size + "' AND Color = '" + p.color + "';";
+                s.execute_query(s.database, delete_query);
+                cout << "You have successfully deleted " << p.clothing_item << " from your closet!" << endl;
+            }
+            else if(p.choice == 3){
+                string print_query = "SELECT ClothingItem, Brand, Size, Color FROM ClothingTable WHERE Name = '" + p.user_name + "';";
+                s.print_command(s.database, print_query);
+            }
+        cout << "Is there anything else I can help you with today?" << endl;
+        string response;
+        cin >> response;
+        if(response == "NO" || response == "no" || response == "No" || response == "n" || response == "N"){
+            cout << "Thanks for visiting virtual closet! See you next time!" << endl;
+            return 0;
+        }
+        p.functionalities();
+    }
     
-    if(p.choice == 1){
-        p.insert();
-        string insert_query = "INSERT INTO ClothingTable (ClothingItem, Brand, Size, Color, Name) "
-                                     "VALUES ('" + p.clothing_item + "', '" + p.brand + "', '" +
-                                     p.size + "', '" + p.color + "', '" + p.user_name + "');";
-        
-        s.execute_query(s.database, insert_query);
-    }
-    else if(p.choice == 2){
-        p.remove();
-        
-    }
-    else if(p.choice == 3){
-        p.view();
-    }
+    
+    
+    
     
     sqlite3_close(s.database);
     return 0;

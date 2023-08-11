@@ -41,5 +41,4 @@ public:
     
     void remove();
     
-    void view();
 };

@@ -45,7 +45,7 @@ void Prompts::functionalities(){
     cout << "2. delete an item from your closet" << endl;
     cout << "3. see all of your items of clothing" << endl;
     cout << "Please type the number of what you would like to do" << endl;
-    cin >> choice;
+    
 }
 
 void Prompts::invalid_choice(){
@@ -58,19 +58,24 @@ void Prompts::invalid_choice(){
 void Prompts::insert(){
     cout << "What is the name of the item that you would like to insert today?" << endl;
     cin >> clothing_item;
+    cin.ignore();
     cout << "What is the brand of this item?" << endl;
-    cin >> brand;
-    cout << "What is the size of this item?" << endl;
-    cin >> size;
+    getline(cin, brand);
     cout << "What is the color of this item?" << endl;
     cin >> color;
+    cout << "What is the size of this item?" << endl;;
+    cin >> size;
 }
 
 void Prompts::remove(){
-    
+    cout << "What is the name of the item that you would like to delete today?" << endl;
+    getline(cin, clothing_item);
+    cout << "What is the brand of this item?" << endl;
+    getline(cin, brand);
+    cout << "What is the color of this item?" << endl;
+    cin >> color;
+    cout << "What is the size of this item?" << endl;
+    cin >> size;
 }
 
-void Prompts::view(){
-    
-}
 

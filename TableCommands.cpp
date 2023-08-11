@@ -65,5 +65,22 @@ int TableCommands::execute_query(sqlite3* db, const string& query) {
     return rc;
 }
 
+void TableCommands::print_command(sqlite3* db, const string& query){
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
+    
+    if(rc == SQLITE_OK){
+        cout << "Here are your clothing items!" << endl;
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            const char* clothing_item = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+            const char* brand = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            const char* size = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            const char* color = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+            cout << "Clothing Item: " << clothing_item << ", Brand: " << brand << ", Size: " << size << ", Color: " << color << endl;
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+
 
 
