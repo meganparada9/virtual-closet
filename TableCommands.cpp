@@ -2,7 +2,6 @@
 //  user.cpp
 //  virtual_closet
 //
-//  Created by Megan Parada on 7/21/23.
 //
 
 #include "TableCommands.hpp"
@@ -11,8 +10,7 @@ TableCommands::TableCommands(){
     database = initialize_database();
 }
 
-bool TableCommands::check_value_exists(sqlite3 *db, const string &tableName, const string &columnName, const string &value){
-    
+bool TableCommands::check_value_exists(sqlite3 *db, const string &table_name, const string &column_name, const string &value){
     string query = "SELECT COUNT(*) FROM " + tableName + " WHERE " + columnName + " = ?;";
     sqlite3_stmt* stmt;
 

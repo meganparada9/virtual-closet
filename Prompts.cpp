@@ -29,6 +29,7 @@ void Prompts::returning_user(){
 void Prompts::new_user(){
     cout << "Hmm, I don't seem to recognize you, " << user_name << "\nWould you like to create a virtual closet? ";
     getline(cin, response);
+    
     if(response == "NO" || response == "no" || response == "No"){
         cout << "Well, it was nice meeting you, " << user_name << "! Ciao!";
         return;
